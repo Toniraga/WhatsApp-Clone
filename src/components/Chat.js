@@ -29,7 +29,6 @@ const Chat = () => {
                 .collection('messages')
                 .orderBy('timestamp', 'asc')
                 .onSnapshot(snapshot => {
-                    console.log(snapshot)
                     setMessages(snapshot.docs.map(doc => doc.data()))
                 });
         }
@@ -56,7 +55,9 @@ const Chat = () => {
 
                 <div className='chat__headerInfo'>
                     <h3> {roomName} </h3>
-                    <p> Last seen at...  </p>
+                    <p> 
+                        { messages.length !== 0 ? new Date(messages[messages.length -1]?.timestamp?.toDate()).toUTCString() : 'Start Chatting!!' }
+                    </p>
                 </div>
 
                 <div className='chat__headerRight'>
@@ -75,7 +76,9 @@ const Chat = () => {
 
             <div className='chat__body'>
                 {messages.map(message => (
-                    <p className={`chat__message ${message.name === user.displayName && 'chat__reciever'}`}> 
+                    <p 
+                        className={`chat__message ${message.name === user.displayName && 'chat__reciever'}`} 
+                        key={`${message.name}${message.timestamp}`}>
                         <span className='chat_name'> {message.name} </span>
                         {message.message}
                         <span className='chat__timestamp'> 
