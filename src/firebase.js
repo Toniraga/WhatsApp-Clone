@@ -1,8 +1,7 @@
-import firebase from 'firebase';
-// import "firebase/auth"; // for authentication
-// import "firebase/storage"; // for storage
-// import "firebase/database"; // for realtime database
-import "firebase/firestore"; // for cloud firestore
+import * as firebase from "firebase/app";
+import 'firebase/database'; // If using Firebase database
+import "firebase/auth"; 
+import "firebase/firestore";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyBBgJytA30tPKi1S7WpFx2Dg4rGHu7ngJo",
